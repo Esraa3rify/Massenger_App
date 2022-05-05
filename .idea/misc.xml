@@ -6,8 +6,12 @@
         <entry key="..\:/Users/MICROSOFT/AndroidStudioProjects/Massenger7/app/src/main/res/drawable/rounded.xml" value="0.185" />
         <entry key="..\:/Users/MICROSOFT/AndroidStudioProjects/Massenger7/app/src/main/res/drawable/rounded_button.xml" value="0.185" />
         <entry key="..\:/Users/MICROSOFT/AndroidStudioProjects/Massenger7/app/src/main/res/drawable/rounded_select_pic.xml" value="0.185" />
+        <entry key="..\:/Users/MICROSOFT/AndroidStudioProjects/Massenger7/app/src/main/res/layout/activity_latest_message.xml" value="0.22826086956521738" />
         <entry key="..\:/Users/MICROSOFT/AndroidStudioProjects/Massenger7/app/src/main/res/layout/activity_main.xml" value="0.22826086956521738" />
+        <entry key="..\:/Users/MICROSOFT/AndroidStudioProjects/Massenger7/app/src/main/res/layout/activity_new_message.xml" value="0.22826086956521738" />
         <entry key="..\:/Users/MICROSOFT/AndroidStudioProjects/Massenger7/app/src/main/res/layout/login.xml" value="0.22826086956521738" />
+        <entry key="..\:/Users/MICROSOFT/AndroidStudioProjects/Massenger7/app/src/main/res/layout/user_row_new_message.xml" value="0.22826086956521738" />
+        <entry key="..\:/Users/MICROSOFT/AndroidStudioProjects/Massenger7/app/src/main/res/menu/nav_menu.xml" value="0.25416666666666665" />
       </map>
     </option>
   </component>
