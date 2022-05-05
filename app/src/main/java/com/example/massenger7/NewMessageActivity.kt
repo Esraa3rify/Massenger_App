@@ -40,6 +40,7 @@ class NewMessageActivity : AppCompatActivity() {
 
             override fun onDataChange(p0: DataSnapshot) {
 
+                val adapter = GroupAdapter<ViewHolder>()
                 p0.children.forEach {
                     Log.d("NewMessage", it.toString())
                     val user = it.getValue(User::class.java)
@@ -57,6 +58,7 @@ class NewMessageActivity : AppCompatActivity() {
         })
     }
 }
+
 
 class UserItem(val user: User): Item<ViewHolder>() {
     override fun bind(viewHolder: RecyclerView.ViewHolder, position: Int) {
