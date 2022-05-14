@@ -12,6 +12,15 @@
         <entry key="..\:/Users/MICROSOFT/AndroidStudioProjects/Massenger7/app/src/main/res/layout/login.xml" value="0.22826086956521738" />
         <entry key="..\:/Users/MICROSOFT/AndroidStudioProjects/Massenger7/app/src/main/res/layout/user_row_new_message.xml" value="0.22826086956521738" />
         <entry key="..\:/Users/MICROSOFT/AndroidStudioProjects/Massenger7/app/src/main/res/menu/nav_menu.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/MICROSOFT/AndroidStudioProjects/Massenger7fifth/app/src/main/res/drawable/rounded_button.xml" value="0.185" />
+        <entry key="..\:/Users/MICROSOFT/AndroidStudioProjects/Massenger7fifth/app/src/main/res/drawable/rounded_edittext_register.xml" value="0.185" />
+        <entry key="..\:/Users/MICROSOFT/AndroidStudioProjects/Massenger7fifth/app/src/main/res/drawable/rounded_select_pic.xml" value="0.185" />
+        <entry key="..\:/Users/MICROSOFT/AndroidStudioProjects/Massenger7fifth/app/src/main/res/layout/activity_chat_log.xml" value="0.22826086956521738" />
+        <entry key="..\:/Users/MICROSOFT/AndroidStudioProjects/Massenger7fifth/app/src/main/res/layout/activity_latest_message.xml" value="0.22826086956521738" />
+        <entry key="..\:/Users/MICROSOFT/AndroidStudioProjects/Massenger7fifth/app/src/main/res/layout/activity_main.xml" value="0.22826086956521738" />
+        <entry key="..\:/Users/MICROSOFT/AndroidStudioProjects/Massenger7fifth/app/src/main/res/layout/activity_new_message.xml" value="0.22826086956521738" />
+        <entry key="..\:/Users/MICROSOFT/AndroidStudioProjects/Massenger7fifth/app/src/main/res/layout/chat_from_row.xml" value="0.22826086956521738" />
+        <entry key="..\:/Users/MICROSOFT/AndroidStudioProjects/Massenger7fifth/app/src/main/res/layout/chat_to_row.xml" value="0.22826086956521738" />
       </map>
     </option>
   </component>
