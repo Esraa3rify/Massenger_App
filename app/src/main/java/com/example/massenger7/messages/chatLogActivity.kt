@@ -3,7 +3,6 @@ package com.example.massenger7
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import androidx.recyclerview.widget.RecyclerView
 import com.example.massenger7.messages.LatestMessageActivity
 import com.example.massenger7.messages.LatestMessageActivity.Companion.currentUser
 import com.example.massenger7.models.ChatMessage
@@ -13,12 +12,9 @@ import com.google.firebase.database.ChildEventListener
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
-import com.squareup.picasso.Picasso
-import com.views.ChatFromItem
-import com.views.ChatToItem
+import com.example.massenger7.views.ChatFromItem
+import com.example.massenger7.views.ChatToItem
 import com.xwray.groupie.GroupAdapter
-import com.xwray.groupie.GroupieViewHolder
-import com.xwray.groupie.Item
 import kotlinx.android.synthetic.main.activity_chat_log.*
 import kotlinx.android.synthetic.main.activity_new_message.*
 

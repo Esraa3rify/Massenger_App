@@ -15,10 +15,8 @@ import com.example.massenger7.models.ChatMessage
 import com.example.massenger7.models.User
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
-import com.squareup.picasso.Picasso
-import com.views.LatestMesssageRow
+import com.example.massenger7.views.LatestMesssageRow
 import com.xwray.groupie.GroupAdapter
-import com.xwray.groupie.Item
 import kotlinx.android.synthetic.main.activity_latest_message.*
 
 class LatestMessageActivity : AppCompatActivity() {

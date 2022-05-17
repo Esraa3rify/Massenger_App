@@ -1,4 +1,4 @@
-package com.views
+package com.example.massenger7.views
 
 import com.example.massenger7.R
 import com.example.massenger7.models.ChatMessage
