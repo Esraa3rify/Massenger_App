@@ -4,6 +4,8 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import androidx.recyclerview.widget.RecyclerView
+import com.example.massenger7.messages.LatestMessageActivity
+import com.example.massenger7.messages.LatestMessageActivity.Companion.currentUser
 import com.example.massenger7.models.ChatMessage
 import com.example.massenger7.models.User
 import com.google.firebase.auth.FirebaseAuth
@@ -11,6 +13,9 @@ import com.google.firebase.database.ChildEventListener
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
+import com.squareup.picasso.Picasso
+import com.views.ChatFromItem
+import com.views.ChatToItem
 import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.GroupieViewHolder
 import com.xwray.groupie.Item
@@ -24,6 +29,7 @@ class chatLogActivity : AppCompatActivity() {
     }
 
     val adapter=GroupAdapter<ViewHolder>()
+    var toUser: User?=null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,9 +42,9 @@ class chatLogActivity : AppCompatActivity() {
 
         //receive the username value from the previous activity<-newmassege
         //val username=intent.getStringExtra(NewMessageActivity.USER_KEY)
-        val user = intent.getParcelableExtra<User>(NewMessageActivity.USER_KEY)
-        if (user != null) {
-            supportActionBar?.title = user.username
+        val toUser = intent.getParcelableExtra<User>(NewMessageActivity.USER_KEY)
+        if (toUser != null) {
+            supportActionBar?.title = toUser.username
         }
 
         //setupDummyData()
@@ -51,7 +57,10 @@ class chatLogActivity : AppCompatActivity() {
     }
 
     private fun listenForMessage() {
-        val ref=FirebaseDatabase.getInstance().getReference("messages/")
+        //
+        val fromId=FirebaseAuth.getInstance().uid
+        val toId=toUser?.uid
+        val ref=FirebaseDatabase.getInstance().getReference("user-messages/$fromId/$toId")
         ref.addChildEventListener(object :ChildEventListener{
             override fun onChildAdded(snapshot: DataSnapshot, previousChildName: String?) {
 
@@ -62,12 +71,15 @@ class chatLogActivity : AppCompatActivity() {
                     Log.d(TAG, chatMessage.text)
 
                    if (chatMessage.fromId==FirebaseAuth.getInstance().uid) {
-                       adapter.add(ChatFromItem(chatMessage.text))
+                       val CurrentUser=LatestMessageActivity.currentUser?:return
+                       adapter.add(ChatFromItem(chatMessage.text, currentUser!!))
                    }else {
+                       val toUser= intent.getParcelableExtra<User>(NewMessageActivity.USER_KEY)
 
-                       adapter.add(ChatToItem(chatMessage.text))
+                       adapter.add(ChatToItem(chatMessage.text, toUser!!))
                    }
                 }
+                RVchatLog.scrollToPosition(adapter.itemCount -1)
 
 
             }
@@ -98,55 +110,51 @@ class chatLogActivity : AppCompatActivity() {
         //how to create a node called message in FB
 
         val text=enterMessageET.text.toString()
-
+        //implement the feature which refer to the user to user messages
         val fromId=FirebaseAuth.getInstance().uid
         val user = intent.getParcelableExtra<User>(NewMessageActivity.USER_KEY)
 
-        val toId= user.uid
+        val toId= user?.uid
         if (fromId==null)return
-        val reference=FirebaseDatabase.getInstance().getReference("/messages").push()
+       // val reference=FirebaseDatabase.getInstance().getReference("/messages").push()
+        val reference=FirebaseDatabase.getInstance().getReference("/user-messages/$fromId/$toId").push()
+
+        val toReference=FirebaseDatabase.getInstance().getReference("/user-messages/$fromId/$toId").push()
 
         val chatMessage=ChatMessage(reference.key!!,text, fromId,toId,System.currentTimeMillis()/1000)
 
             reference.setValue(chatMessage)
                 .addOnSuccessListener {
-                    Log.d(TAG,"saved our chat message:${reference.key}")
+                    Log.d(TAG, "saved our chat message:${reference.key}")
+
+                    enterMessageET.text.clear()
+                    //allow the latest message to be at the bottom of recyclerview
+                    RVchatLog.scrollToPosition(adapter.itemCount -1)
                 }
+        toReference.setValue(chatMessage)
+
+        //create a node and pass the values of the model class into it
+         val LatestMsgRef=FirebaseDatabase.getInstance().getReference("/latest_messages/$fromId/$toId")
+        //chatMessage is the model class
+        LatestMsgRef.setValue(chatMessage)
+
+        //create a node in the nmain node and pass the values of the model class into it
+        val LatestMsgToRef=FirebaseDatabase.getInstance().getReference("/latest_messages/$toId/$fromId")
+        //chatMessage is the model class
+        LatestMsgRef.setValue(chatMessage)
     }
 
-    private fun setupDummyData() {
+//    private fun setupDummyData() {
+//
+//            val adapter = GroupAdapter<ViewHolder>()
+//            adapter.add(ChatFromItem("from message"))
+//            adapter.add(ChatToItem("to message"))
+//            adapter.add(ChatFromItem("from message "))
+//            adapter.add(ChatToItem(" to message"))
+//
+//            RVchatLog.adapter = adapter
+//        }
 
-            val adapter = GroupAdapter<ViewHolder>()
-            adapter.add(ChatFromItem("from message"))
-            adapter.add(ChatToItem("to message"))
-            adapter.add(ChatFromItem("from message "))
-            adapter.add(ChatToItem(" to message"))
-
-            RVchatLog.adapter = adapter
-        }
-
-    }
-    class ChatFromItem(val text: String) : Item<ViewHolder>() {
-        override fun bind(viewHolder: ViewHolder, position: Int) {
-            ViewHolder.itemView.textView_from_row.text=text
-
-        }
-
-        override fun getLayout(): Int {
-            return R.layout.chat_from_row
-        }
     }
 
 
-    class ChatToItem(val text: String) : Item<ViewHolder>() {
-        override fun bind(viewHolder: ViewHolder, position: Int) {
-            ViewHolder.itemView.textView_to_row.text=text
-
-        }
-
-        override fun getLayout(): Int {
-            return R.layout.chat_to_row
-        }
-    }
-
-}

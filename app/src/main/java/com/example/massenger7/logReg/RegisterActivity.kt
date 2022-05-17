@@ -1,14 +1,15 @@
-package com.example.massenger7
+package com.example.massenger7.logReg
 
 import android.app.Activity
 import android.content.Intent
-import android.graphics.drawable.BitmapDrawable
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle
 import android.provider.MediaStore
 import android.util.Log
 import android.widget.Toast
+import com.example.massenger7.R
+import com.example.massenger7.messages.LatestMessageActivity
 import com.example.massenger7.models.User
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
@@ -35,7 +36,7 @@ class RegisterActivity : AppCompatActivity() {
             Log.d(TAG, "Try to show login activity")
 
             // launch the login activity somehow
-            val intent = Intent(this, Login::class.java)
+            val intent = Intent(this, loginActivity::class.java)
             startActivity(intent)
         }
 
@@ -128,7 +129,7 @@ class RegisterActivity : AppCompatActivity() {
                 .addOnSuccessListener {
                     Log.d(TAG, "Finally we saved the user to Firebase Database")
 
-                    val intent=Intent(this,LatestMessageActivity::class.java)
+                    val intent=Intent(this, LatestMessageActivity::class.java)
                     intent.flags=Intent.FLAG_ACTIVITY_CLEAR_TASK.or(Intent.FLAG_ACTIVITY_NEW_TASK)
                     startActivity(intent)
                 }

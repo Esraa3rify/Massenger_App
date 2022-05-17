@@ -3,7 +3,7 @@ plugins {
     id 'org.jetbrains.kotlin.android'
     id 'maven-publish'
     id 'com.google.gms.google-services'
-    id 'kotlin-android-extensions'
+   id 'kotlin-android-extensions'
 }
 
 
@@ -27,7 +27,7 @@ android {
 
     buildTypes {
         release {
-            minifyEnabled false
+            minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
@@ -42,12 +42,12 @@ android {
 //    androidExtensions {
 //        experimental = true
 //    }
-//
-//    buildFeatures {
-//        //dataBinding true
-//        viewBinding true
-//
-//    }
+
+    buildFeatures {
+        //dataBinding true
+        viewBinding true
+
+    }
 
 }
 
