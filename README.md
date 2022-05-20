@@ -61,14 +61,22 @@ This is a native Android Messenger app, with realtime chat conversations.
 Before we dive into building and running a fully featured Messenger for Android, ensure that you've read the following.
 
 .Latest Android Studio Installed
+
 .An Android Device
+
 .Building the code is as simple as:
 
 
+
 *Launch Android Studio
+
 *Open the project from the folder where you have downloaded the code using menu File -> Open
+
 *Build using menu Build -> Rebuild Project
+
 *It may take a while to build the project for the first time.
+
 8Once the build is over, run on the device using menu Run -> Run (app)
+
 *That's it, you should see the welcome screen like below.
 
